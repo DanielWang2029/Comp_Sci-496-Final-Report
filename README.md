@@ -35,3 +35,60 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+
+
+## A review of Isotropic PCA and Affine-Invariant Clustering (By Dr. Charles Brubaker and Dr. Santosh Vempala)
+
+
+### 1. Background Information
+
+
+#### 1.1 principle component analysis (PCA)
+
+
+#### 1.2 affine transformation
+
+
+#### 1.3 PCA and Affine Invariant
+
+
+#### 1.4 PCA and isotropic inputs
+
+
+### 2. Algorithm
+
+
+#### 2.1 algorithm overview
+
+
+#### 2.2 reweighting
+
+
+#### 2.3 component partition
+
+
+### 3. Results
+
+
+#### 3.1 result overview
+
+
+#### 3.2 differences
+
+
+### 4. Potential Application
+
+
+#### 4.1 mixtures of distributions with mild properties
+
+
+#### 4.2 bound on the first few moments
+
+
+#### 4.3 training of dataset that has different representations in different nation
+
+
+#### 4.4 potential replacement of all PCA usage in ML algorithms
+
+
+### 5. Mathematical Details
