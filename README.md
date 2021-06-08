@@ -132,13 +132,13 @@ In this section, we'll talk about some application of isotropic PCA, both propos
 ### 4.1 Potential Applications
 
 <p align="center">
-  <img width="480" height="270" src="images\Slide15.JPG">
+  <img width="480" height="270" src="images\Slide14.JPG">
 </p>
 
 Brubaker and Vempala proposed two applications for isotropic PCA in their paper: bounds of moments and analysis of mixtures of distribution with mild properties such as center symmetry (due to affine invarient). For bounds of moments, they stated that since isotropic PCA utilizes spectral and mean shift method, a quantitative bound for the first few moments might be solvable with additional calculation. 
 
 <p align="center">
-  <img width="480" height="270" src="images\Slide16.JPG">
+  <img width="480" height="270" src="images\Slide15.JPG">
 </p>
 
 In addition the above application, I proposed two other potential usages for Isotropic PCA in my presentation: unit-sensitive datasets and PCA replacement in ML algorithms. Since Isotropic PCA is affine invariant, it could, for example, generate unified solution on datasets that have different representation in different nations (regardless of units), which better unites scientific finding and their applications around the world. Isotropic PCA could also acts as a replacement of PCA in many ML algorithms. Many modern ML algorithms involve an initial PCA of dataset at the beginning. Isotropic PCA could potentially replace those PCA to achieve better separation effects or even advanced affine invariant ML methods.
@@ -156,6 +156,6 @@ Future research on isotropic PCA and affine invariant clustering could focus on 
 ## 6. Citations
 
 <p align="center">
-  <img width="480" height="270" src="images\Slide17.JPG">
+  <img width="480" height="270" src="images\Slide16.JPG">
 </p>
 
