@@ -30,7 +30,11 @@ In this blog post, we'll prepare readers with enough information to understand t
     - future research directions
 
 - Mathematical Detail
+    - Preliminaries
+    - Finding a Vector near the Fisher Subspace
+    - Recursion
 
+- Citations
 
 ## 1. Background Information
 
@@ -151,6 +155,34 @@ Future research on isotropic PCA and affine invariant clustering could focus on 
 
 ## 5. Mathematical Details
 
+Brubaker and Vempala's main result in this paper could be concluded in following three theorem:
+
+<p align="center">
+  <img width="715" height="160" src="images\thm1.png">
+</p>
+
+<p align="center">
+  <img width="705" height="154" src="images\thm2.png">
+</p>
+
+<p align="center">
+  <img width="709" height="152" src="images\thm3.png">
+</p>
+
+where UNRAVEL is the algorithm of isotropic PCA.
+
+In this section, we'll briefly go over the proof of these theorems and some of the main claims used in those proofs. For a comprehensive mathematical proof of isotropic PCA, please refer to the paper.
+
+### 5.1 Preliminaries
+
+
+
+### 5.2 Finding a Vector near the Fisher Subspace
+
+
+
+### 5.3 Recursion
+
 
 
 ## 6. Citations
@@ -158,4 +190,3 @@ Future research on isotropic PCA and affine invariant clustering could focus on 
 <p align="center">
   <img width="480" height="270" src="images\Slide16.JPG">
 </p>
-
