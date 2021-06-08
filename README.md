@@ -175,15 +175,84 @@ In this section, we'll briefly go over the proof of these theorems and some of t
 
 ### 5.1 Preliminaries
 
+Here are some important lemmas or claims that would be used in the proof of next two subsections. Proof of these lemmas or claims might be simplified or omitted due to complexity.
+
+<p align="center">
+  <img width="391" height="81" src="images\l9.png">
+</p>
+
+<p align="center">
+  <img width="703" height="149" src="images\l13.png">
+</p>
 
 
 ### 5.2 Finding a Vector near the Fisher Subspace
 
+<p align="center">
+  <img width="480" height="270" src="images\Slide11.JPG">
+</p>
 
+Recall that we have different methods for finding a direction according to the norm of mean shift. The authors proposed Mean Shift Method for small mean shifts and Spectral Method for large mean shifts:
+
+<p align="center">
+  <img width="701" height="155" src="images\mst.png">
+</p>
+
+<p align="center">
+  <img width="702" height="165" src="images\st.png">
+</p>
+
+Proof of Mean Shift Theorem is relatively easy. Brubaker and Vempala first claim with proof that for any non-zero vector a and b, 
+
+<p align="center">
+  <img width="272" height="56" src="images\mstp1.png">
+</p>
+
+By triangle inequality and lemma 9, we have
+
+<p align="center">
+  <img width="341" height="57" src="images\mstp2.png">
+</p>
+
+Together with lemma 13, we could get
+
+<p align="center">
+  <img width="231" height="119" src="images\mstp3.png">
+</p>
+
+Proof of Spectral Method consists of three parts: upper bound, lower bound and a combination part.
+
+Since v = Up and input is isotropic, we have
+
+<p align="center">
+  <img width="253" height="137" src="images\pst1.png">
+</p>
+
+Since q span all means, we could get
+
+<p align="center">
+  <img width="318" height="166" src="images\pst2.png">
+</p>
+
+which gives us
+
+<p align="center">
+  <img width="306" height="51" src="images\pst3.png">
+</p>
+
+Similar to Mean Shift Theorem, we could combine this with triangle inequality and lemma 9 to get
+
+<p align="center">
+  <img width="279" height="136" src="images\pst4.png">
+</p>
+
+which is the upper bound part.
+
+TODO: finish lower bound part in detail and briefly go over combination part
 
 ### 5.3 Recursion
 
-
+TODO: finish proof of recursion
 
 ## 6. Citations
 
