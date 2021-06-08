@@ -24,9 +24,9 @@ In this blog post, we'll prepare readers with enough information to understand t
 
     2.1 algorithm overview
     
-    2.2 reweighting
+    2.2 component partition
     
-    2.3 component partition
+    2.3 recursion
 
 3. Result
 
@@ -79,7 +79,7 @@ Affine invariant refer to the invariance of result after affine transformations.
   <img width="480" height="270" src="images\Slide6.JPG">
 </p>
 
-In the above example, we scale $x$ axis by 0.5 to get $z$ axis while keeping the original data the same. Such scaling triggers a change in covariance matrix and consequently results in different component outputs.
+In the above example, we scale x axis by 0.5 to get z axis while keeping the original data the same. Such scaling triggers a change in covariance matrix and consequently results in different component outputs.
 
 Therefore affine invariant is a good property one machine learning methods could have on handling with unit sensitive or noisy distribution/mixtures.
 
@@ -89,7 +89,7 @@ Therefore affine invariant is a good property one machine learning methods could
   <img width="480" height="270" src="images\Slide7.JPG">
 </p>
 
-When the covariance matrix of the input is a multiple of the identity, then PCA reveals no information; the second moment along any direction is the same. Such inputs are called isotropic. However, if isotropic PCA were used here, it could actually pulls apart the components and perform an affine invariant clustering, which is pretty interesting considering that PCA is useless in such scenario. The authors also claim that isotropic PCA also perform substantial better of known results when “applied to mixtures of arbitrary Gaussians from unlabeled samples”.
+When the covariance matrix of the input is a multiple of the identity, PCA reveals no information and the second moment along any direction is the same. Such inputs are called isotropic. However, if isotropic PCA were used here, it could actually pulls apart the components and perform an affine invariant clustering, which is pretty interesting considering that PCA is useless in such scenario. The authors also claim that isotropic PCA also perform substantial better of known results when “applied to mixtures of arbitrary Gaussians from unlabeled samples”.
 
 ## 2. Algorithm
 
@@ -97,7 +97,7 @@ When the covariance matrix of the input is a multiple of the identity, then PCA 
   <img width="480" height="270" src="images\Slide8.JPG">
 </p>
 
-In this section we'll be talking about the isotropic PCA algorithm Brubaker and Vempala proposed, listed above. Such algorithm consists 
+In this section we'll be talking about the isotropic PCA algorithm Brubaker and Vempala proposed, shown above.
 
 ### 2.1 Algorithm Overview
 
@@ -105,29 +105,38 @@ In this section we'll be talking about the isotropic PCA algorithm Brubaker and 
   <img width="480" height="270" src="images\Slide9.JPG">
 </p>
 
+The above image is a visualization of the algorithm without too many mathematical details (which could be found in section 5). The algorithm consists three main steps: The first step is to find an affine transformation that makes the input isotropic/having an isotropic distribution. In other words, this step is to find a linear transformation that moves the mean to the origin and transform the covariance matrix into identity. In the next step, we take a random subset of the input and apply such transformation on those points. The result would then be reweighted according to a specific spherically symmetric Gaussian. The third step of this algorithm is to find a direction close to the Fisher subspace to partition the components and get a hyperplane perpendicular to such direction that divides component’s probability mass. Here the authors stated two possible scenarios and we'll discuss them in the next subsection. After having two half-spaces, we recursively apply this algorithm on both mixtures using different samples in step 2.
 
-### 2.2 Reweighting
+### 2.2 Component Partition
 
 <p align="center">
   <img width="480" height="270" src="images\Slide10.JPG">
 </p>
 
+In the third step of this algorithm, Brubaker and Vempala discussed two different methods to determine the direction for step 4 depending on the relative “mass” between components: If some component is heavier than the others, the reweighted mean would shift in the intermean subspace and that would be the direction along which we partition and arrive at a hyperplane that separate components. If no significant shifts are observed, the top principal components of the second moment matrix could approximate the intermean subspace and we could project the data onto the direction of maximum second moment. 
 
-### 2.3 Component Partition
+### 2.3 Recursion
 
-
+In the recursion step, the authors setup a threshold for largest gap between points in certain interval. If the gap is lower than the threshold, recursion is terminated, and projected data are returned. Otherwise find the half-spaces, recurse on both and return the union of the polyhedral produced by recursive calls. Such critical level is the same regardless which direction identification methods we used earlier.
 
 ## 3. Results
 
-
+In this section, we'll explore some simple results Brubaker and Vempala provided using isotropic PCA. We'll also look at a more complicated experiment using both normal PCA and isotropic PCA to analyze their differences.
 
 ### 3.1 Result Overview
 
+<p align="center">
+  <img width="480" height="270" src="images\Slide12.JPG">
+</p>
+
+From the plots above, we could see that isotropic PCA successfully seperates/clusters the classes, even for the first two examples where blue and red dot are intuitively close, and turns every mixture into almost what the authors would call “parallel pancakes”, separable along the intermean direction. Most of the credit goes to isotropy, i.e. the first step of isotropic PCA.
 
 
 ### 3.2 Comparison
 
-
+<p align="center">
+  <img width="480" height="270" src="images\Slide100.jpg">
+</p>
 
 ## 4. Potential Application
 
