@@ -183,8 +183,6 @@ Here are some important lemmas or claims that would be used in the proof of next
   <img width="391" height="81" src="images\l9.png">
 </p>
 
-<br/><br/>
-
 Proof of lemma 9:
 
 From Fisher Criterion we could arrive at
