@@ -70,7 +70,7 @@ Affine invariant refer to the invariance of result after affine transformations.
 
 In the above example, we scale x axis by 0.5 to get z axis while keeping the original data the same. Such scaling triggers a change in covariance matrix and consequently results in different component outputs.
 
-Therefore affine invariant is a good property one machine learning methods could have on handling with unit sensitive or noisy datasets. It allows algorithms to potentially operate on larger set of Gaussian mixtures and distributions with mild properties.
+Therefore affine invariant is a good property one machine learning methods could have on handling unit sensitive or noisy datasets. It allows algorithms to potentially operate on larger set of Gaussian mixtures and distributions with mild properties.
 
 ### 1.4 PCA and Isotropic Inputs
 
@@ -102,7 +102,7 @@ The above image is a visualization of the algorithm without too many mathematica
   <img width="480" height="270" src="images\Slide10.JPG">
 </p>
 
-In the third step of this algorithm, Brubaker and Vempala discussed two different methods to determine the direction for step 4 depending on the relative “mass” between components: If some component is heavier than the others, the reweighted mean would shift in the intermean subspace and that would be the direction along which we partition and arrive at a hyperplane that separate components. If no significant shifts are observed, the top principal components of the second moment matrix could approximate the intermean subspace and we could project the data onto the direction of maximum second moment. 
+In the third step of this algorithm, Brubaker and Vempala discussed two different methods to determine the direction for step 3 depending on the relative “mass” between components: If some component is heavier than the others, the reweighted mean would shift in the intermean subspace and that would be the direction along which we partition and arrive at a hyperplane that separate components. If no significant shifts are observed, the top principal components of the second moment matrix could approximate the intermean subspace and we could project the data onto the direction of maximum second moment. 
 
 ### 2.3 Recursion
 
@@ -118,7 +118,7 @@ In this section, we'll explore some simple results Brubaker and Vempala provided
   <img width="480" height="270" src="images\Slide12.JPG">
 </p>
 
-From the plots above, we could see that isotropic PCA successfully seperates/clusters the classes, even for the first two examples where blue and red dot are intuitively close, and turns every mixture into almost what the authors would call “parallel pancakes”, separable along the intermean direction. Most of the credit goes to isotropy, i.e. the first step of isotropic PCA.
+From the plots above, we could see that isotropic PCA successfully seperates/clusters the classes, even for the first two examples where blue and red dot are intuitively close, and turns every mixture into almost what the authors would call “parallel pancakes”, separable along the intermean direction. According to the authors, most of the credit goes to isotropy, i.e. the first step of isotropic PCA.
 
 
 ### 3.2 Comparison
@@ -127,7 +127,7 @@ From the plots above, we could see that isotropic PCA successfully seperates/clu
   <img width="480" height="270" src="images\Slide100.jpg">
 </p>
 
-One of the major differences between Isotropic PCA and other clustering methods is that Isotropic PCA is affine invariant. This is due to the isotropic transformation in step 1 and direction identification in step 3 which does not have any access of labels. The above plots is a more complex experiment with three independent classes and a good example to showcase such difference. We could find that implementing PCA on the original dataset has similar effect of randomly projects the input onto some hyperplane, both of which result in a chaotic distribution of data from all classes. Isotropic PCA, on the other hand, is pretty useful in this circumstance as it could effectively cluster those three classes.
+One of the major differences between isotropic PCA and other clustering methods is that isotropic PCA is affine invariant. This is due to the isotropic transformation in step 1 and direction identification in step 3 which does not have any access of labels. The above plots is a more complex experiment with three independent classes and a good example to showcase such difference. We could find that implementing PCA on the original dataset has similar effect of randomly projects the input onto some hyperplane, both of which result in a chaotic distribution of data from all classes. Isotropic PCA, on the other hand, is pretty useful in this circumstance as it could effectively cluster those three classes.
 
 ## 4. Application and Future Research
 
@@ -145,13 +145,13 @@ Brubaker and Vempala proposed two applications for isotropic PCA in their paper:
   <img width="480" height="270" src="images\Slide15.JPG">
 </p>
 
-In addition the above application, I proposed two other potential usages for Isotropic PCA in my presentation: unit-sensitive datasets and PCA replacement in ML algorithms. Since Isotropic PCA is affine invariant, it could, for example, generate unified solution on datasets that have different representation in different nations (regardless of units), which better unites scientific finding and their applications around the world. Isotropic PCA could also acts as a replacement of PCA in many ML algorithms. Many modern ML algorithms involve an initial PCA of dataset at the beginning. Isotropic PCA could potentially replace those PCA to achieve better separation effects or even advanced affine invariant ML methods.
+In addition the those application, I proposed two other potential usages for isotropic PCA in my presentation: unit-sensitive datasets and PCA replacement in ML algorithms. Since isotropic PCA is affine invariant, it could, for example, generate unified solution on datasets that have different representation in different nations (regardless of units), which better unites scientific finding and their applications around the world. Isotropic PCA could also acts as a replacement of PCA in many ML algorithms. Many modern ML algorithms involve an initial PCA of dataset at the beginning. Isotropic PCA could potentially replace those PCA to achieve better separation effects or even advanced affine invariant ML methods.
 
 ### 4.2 Future Research directions
 
-One of the brilliances of isotropic PCA is that it finds a way to identify directions to partition components without accessing any labels. This is intuitively hard because normal PCA provide no additional information after isotropy/isotropic transformation. In this identification process, we could find high correlation between the design of reweighting step and the discussion of symmetry: if mixing weights are equal, the mean would not shift due to symmetry, then the reweighted 2nd moment would reveal the intermean direction; Otherwise the heavier component would lies closer to the center and the mean shift gives us the direction to partition components, all of which are cleverly designed. In addition, normal PCA might fail for mixture of arbitrary Gaussians due to affine variance. isotropic PCA successfully solves such issue and made possible to learn noisy distributions with their parameters and perform agnostic learning.
+One of the brilliances of isotropic PCA is that it finds a way to identify directions to partition components without accessing any labels. This is intuitively hard because normal PCA provide no additional information after isotropy/isotropic transformation. In this identification process, we could find high correlation between the design of reweighting step and the discussion of symmetry: if mixing weights are equal, the mean would not shift due to symmetry, then the reweighted 2nd moment would reveal the intermean direction; Otherwise the heavier component would lies closer to the center and the mean shift gives us the direction to partition components, all of which are cleverly designed. In addition, normal PCA might fail for mixture of arbitrary Gaussians due to affine variance. Isotropic PCA successfully solves such issue and made possible to learn noisy distributions with their parameters and perform agnostic learning.
 
-Future research on isotropic PCA and affine invariant clustering could focus on the performance of isotropic PCA. Although the authors claim that isotropic PCA have an advantage for isotropic data inputs, the exact increase on performances and quantitative comparison between isotropic PCA and other models are yet to be discovered/calculated. We could also perform additional calculation on the worse case for isotropic PCA as Brubaker and Vempala has several assumptions they deemed as ideal. In addition, future research could be conducted on the replacement for PCA in ML models. According to the authors, such replacement could increase the scope of techniques for clustering and potentially promote the performance of specific existing methods. On the application side, I would also like to see isotropic PCA performed on real datasets, especially unit-sensitive ones that I proposed earlier, and provide a new perspective on clustering.
+Future research on isotropic PCA and affine invariant clustering could focus on the performance of isotropic PCA. Although authors claim that isotropic PCA have an advantage for isotropic data inputs, the exact increase on performances and quantitative comparison between isotropic PCA and other models are yet to be discovered/calculated. We could also perform additional calculation on the worse case for isotropic PCA as Brubaker and Vempala has several assumptions they deemed as ideal. In addition, future research could be conducted on the replacement for PCA in ML models. According to the authors, such replacement could increase the scope of techniques for clustering and potentially promote the performance of specific existing methods. On the application side, I would also like to see isotropic PCA performed on real datasets, especially unit-sensitive ones that I proposed earlier, and provide a new perspective on clustering.
 
 ## 5. Mathematical Details
 
@@ -358,7 +358,7 @@ In this section, we'll show that for every direction close to the intermean subs
 
 In other words, this is "largest gap clustering" where we take the largest gap between points and use the midpoint of that gap to cut the space.
 
-Proof of this lemma is very intuitive and could be divided into following parts: we first show the distances between the means are at least some constant; then we show that the maximum distance between two points from same cluster/component is bounded; if we assume the size of each cluster/component is small enough compared to the intermean distances, the largest gap must be the gap of points in different clusters/components. Therefore taking the midpoint of that gap would probably not cut through any clusters/components. These are the general ideaof this proof and we'll not be elaborating the actual proof of this lemma here due to complexity.
+Proof of this lemma is very intuitive and could be divided into following parts: we first show the distances between the means are at least some constant; then we show that the maximum distance between two points from the same cluster/component is bounded; if we assume the size of each cluster/component is small enough compared to the intermean distances, the largest gap must be the gap of points in different clusters/components. Therefore taking the midpoint of that gap would probably not cut through any clusters/components. These are the general ideaof this proof and we'll not be elaborating the actual proof of this lemma here due to complexity.
 
 It's easy to notice that lemma 22's result resembles the conclusion of theorem 2. In fact, the authors linked lemma 22 and theorem 2 together using some additional calculations and subsequently proved the correctness of latter. From their they further reached the conclusion of theorem 1 and theorem 3 using claims such as lemma 23.
 
