@@ -171,19 +171,69 @@ Brubaker and Vempala's main result in this paper could be concluded in following
 
 where UNRAVEL is the algorithm of isotropic PCA.
 
-In this section, we'll briefly go over the proof of these theorems and some of the main claims used in those proofs. For a comprehensive mathematical proof of isotropic PCA, please refer to the paper.
+In this section, we'll briefly go over the proof of these theorems or their sub-claims and some of the main ideas used in those proofs. The main purpose of this section is to provide some mathematical insights of isotropic PCA besides the intuitive ones provided earlier. For a comprehensive mathematical proof of isotropic PCA, please refer to the paper.
 
 ### 5.1 Preliminaries
 
 Here are some important lemmas or claims that would be used in the proof of next two subsections. Proof of these lemmas or claims might be simplified or omitted due to complexity.
 
+<br/><br/>
+
 <p align="center">
   <img width="391" height="81" src="images\l9.png">
 </p>
 
+<br/><br/>
+
+Proof of lemma 9:
+
+From Fisher Criterion we could arrive at
+
+<p align="center">
+  <img width="332" height="135" src="images\pl91.png">
+</p>
+
+Since isotropy in play, the last term of the product in the sumation is bounded by 1. Therfore
+
+<p align="center">
+  <img width="306" height="31" src="images\pl92.png">
+</p>
+
+which give us
+
+<p align="center">
+  <img width="268" height="46" src="images\pl93.png">
+</p>
+
+<br/><br/>
+
 <p align="center">
   <img width="703" height="149" src="images\l13.png">
 </p>
+
+Proof of lemma 13:
+
+We could observe that
+
+<p align="center">
+  <img width="366" height="49" src="images\pl131.png">
+</p>
+
+Using Hoeffding’s inequality, we could arrive at
+
+<p align="center">
+  <img width="497" height="47" src="images\pl132.png">
+</p>
+
+which conclude our proof by taking the union bound over all coordinates.
+
+<br/><br/>
+
+<p align="center">
+  <img width="714" height="52" src="images\l23.png">
+</p>
+
+<br/><br/>
 
 
 ### 5.2 Finding a Vector near the Fisher Subspace
@@ -201,6 +251,8 @@ Recall that we have different methods for finding a direction according to the n
 <p align="center">
   <img width="702" height="165" src="images\st.png">
 </p>
+
+<br/><br/>
 
 Proof of Mean Shift Theorem is relatively easy. Brubaker and Vempala first claim with proof that for any non-zero vector a and b, 
 
@@ -220,7 +272,9 @@ Together with lemma 13, we could get
   <img width="231" height="119" src="images\mstp3.png">
 </p>
 
-Proof of Spectral Method consists of three parts: upper bound, lower bound and a combination part.
+<br/><br/>
+
+Proof of Spectral Method consists of two parts: finding upper bound and finding lower bound.
 
 Since v = Up and input is isotropic, we have
 
@@ -228,7 +282,7 @@ Since v = Up and input is isotropic, we have
   <img width="253" height="137" src="images\pst1.png">
 </p>
 
-Since q span all means, we could get
+By defination q span all means, therefore we could get
 
 <p align="center">
   <img width="318" height="166" src="images\pst2.png">
@@ -248,11 +302,67 @@ Similar to Mean Shift Theorem, we could combine this with triangle inequality an
 
 which is the upper bound part.
 
-TODO: finish lower bound part in detail and briefly go over combination part
+<br/><br/>
+
+For the lower bound, consider the upper right term in delta:
+
+<p align="center">
+  <img width="424" height="114" src="images\pst5.png">
+</p>
+
+Since each term muliplied to the weight difference in the sumation is non-negative and adds up to 1, the sumation overall is bounded by
+
+<p align="center">
+  <img width="323" height="103" src="images\pst6.png">
+</p>
+
+Now consider the lower right term in delta:
+
+<p align="center">
+  <img width="402" height="121" src="images\pst7.png">
+</p>
+
+Since difference in weights are O(1/alpha), therefore
+
+<p align="center">
+  <img width="319" height="65" src="images\pst8.png">
+</p>
+
+Assuming y = e1 by some appropriate rotation of Di, then the equation becomes
+
+<p align="center">
+  <img width="292" height="121" src="images\pst9.png">
+</p>
+
+From the Cauchy-Schwartz inequality, it follows
+
+<p align="center">
+  <img width="423" height="74" src="images\pst10.png">
+</p>
+
+Since sum of Wi = 1 and mean of weights is larger than 0.5, we have
+
+<p align="center">
+  <img width="164" height="62" src="images\pst11.png">
+</p>
+
+which is the upper bound part.
+
+Together with some additional calculations on probabilities, we could arrive at the Spectral Method.
 
 ### 5.3 Recursion
 
-TODO: finish proof of recursion
+In this section, we'll show that for every direction close to the intermean subspace, the algorithm could find halfspaces that partitions Rn, leaving small enough proportion of probability mass misclassified. Specifically, the authors proposed that
+
+<p align="center">
+  <img width="706" height="301" src="images\r1.png">
+</p>
+
+In other words, this is "largest gap clustering" where we take the largest gap between points and use the midpoint of that gap to cut the space.
+
+Proof of this lemma is very intuitive and could be divided into following parts: we first show the distances between the means are at least some constant; then we show that the maximum distance between two points from same cluster/component is bounded; if we assume the size of each cluster/component is small enough compared to the intermean distances, the largest gap must be the gap of points in different clusters/components. Therefore taking the midpoint of that gap would probably not cut through any clusters/components. These are the general ideaof this proof and we'll not be elaborating the actual proof of this lemma here due to complexity.
+
+It's easy to notice that lemma 22's result resembles the conclusion of theorem 2. In fact, the authors linked lemma 22 and theorem 2 together using some additional calculations and subsequently proved the correctness of latter. From their they further reached the conclusion of theorem 1 and theorem 3 using claims such as lemma 23.
 
 ## 6. Citations
 
